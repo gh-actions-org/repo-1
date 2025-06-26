@@ -1,0 +1,16 @@
+name: excecuting shell scripts
+
+on: push
+
+jobs: 
+    ascii-job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: repo checkout
+              uses: actions/checkout@v4
+
+            - name: list files
+              run: ls -lrta
+
+            - name: execute shell script
+              run: ./artwork-script.sh
