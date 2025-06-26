@@ -13,13 +13,13 @@ jobs:
               run: sudo apt-get install cowsay -y
 
             - name: Executeing a cowsay command
-              run: cowsay -f dragon "Run for life, I am dragon...:@" >> dragon.txt
+              run: cowsay -f elephant "Run for life, I am elephant...:@" >> elephant.txt
 
             - name: Test if dragon file exists or not
-              run: grep -i "dragon" dragon.txt
+              run: grep -i "elephant" elephant.txt
 
             - name: Read file
-              run: cat dragon.txt
+              run: cat elephant.txt
 
             - name: Checkout files
               run: ls -lrta
