@@ -13,7 +13,7 @@ jobs:
         run: cowsay -f elephant "Run for your life, I am an Elephant...:@" >> elephant.txt
 
       - name: Upload elephant.txt artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dragon-file
           path:  dragon.txt
@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download dragon file
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dragon-file
 
@@ -37,7 +37,7 @@ jobs:
     needs: test-job2
     steps:
       - name: download artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dragon-file
           
