@@ -1,4 +1,4 @@
-name: v&s-wf level
+name: repo-level-v&s workflow
 on: push
 env:
     REGISTRY: docker.io

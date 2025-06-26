@@ -1,5 +1,5 @@
 name: v&s-wf level
-on: push
+on: workflow_dispatch
 env:
     REGISTRY: docker.io
     DOCKER_USERNAME: samarth2002
