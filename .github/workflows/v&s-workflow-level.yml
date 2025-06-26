@@ -1,4 +1,4 @@
-name: v&s-job level
+name: v&s-wf level
 on: push
 env:
     REGISTRY: docker.io
@@ -26,7 +26,6 @@ jobs:
     deploy: 
         needs: docker
         runs-on: ubuntu-latest
-
         steps:
             - name: Docker run
               run: echo docker run -t -p 8080:80 $REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
