@@ -10,10 +10,17 @@ jobs:
               uses: actions/checkout@v4
               
             - name: Welcome Message
-              run: echo "My first gh actions job"
+              run: |
+                   echo "My first gh actions job"
+                   ls -lrta
+                   cat README.md
+
+            - name: Generate ASCII Art
+              run: cowsay -f lion "Run for your life, I am a lion" >> lion.txt
+              
             
-            - name: List the files in this repo
-              run: ls -lrt
+            # - name: List the files in this repo
+            #   run: ls -lrt
             
-            - name: Read file
-              run: cat README.md
+            # - name: Read file
+            #   run: cat README.md
