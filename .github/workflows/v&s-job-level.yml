@@ -1,0 +1,38 @@
+name: v&s-job level
+on: push
+jobs: 
+    docker:
+        env:
+            REGISTRY: docker.io
+            DOCKER_USERNAME: samarth2002
+            IMAGE_NAME: github-actions-nginx
+        runs-on: ubuntu-latest
+        steps:
+            - name: Docker build
+              run: echo docker build -t $REGISTRY/${{ env.DOCKER_USERNAME }}/$IMAGE_NAME:latest
+
+            - name: Docker login
+              env: 
+                DOCKER_PASSWORD: Samarthdocker
+              run: echo docker login --username=$DOCKER_USERNAME --password=DOCKER_PASSWORD
+
+            
+            - name: Docker publish
+              run: echo docker push $REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+
+            
+    deploy: 
+        env:
+            REGISTRY: docker.io
+            DOCKER_USERNAME: samarth2002
+            IMAGE_NAME: github-actions-nginx
+        needs: docker
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Docker run
+              env:
+                REGISTRY: docker.io
+                DOCKER_USERNAME: samarth2002
+                IMAGE_NAME: github-actions-nginx
+              run: echo docker run -t -p 8080:80 $REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
