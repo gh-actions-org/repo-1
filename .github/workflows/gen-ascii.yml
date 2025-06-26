@@ -1,27 +1,35 @@
-name: Generate artwork
+name: Generate ASCII artwork
 
-on: workflow_dispatch
+on: push
 
-jobs: 
-    ascii-artwork-job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Repo checkout 
-              uses: actions/checkout@v4
-            
-            - name: Install Cowsay program
-              run: sudo apt-get install cowsay -y
+jobs:
+  build-job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Cowsay Program
+        run: sudo apt-get install cowsay -y 
 
-            - name: Executeing a cowsay command
-              run: cowsay -f elephant "Run for life, I am elephant...:@" >> elephant.txt
+      - name: Execute cowsay Command
+        run: cowsay -f elephant "Run for your life, I am an Elephant...:@" >> elephant.txt
 
-            - name: Test if dragon file exists or not
-              run: grep -i "elephant" elephant.txt
+      - name: Sleep for 30 sec
+        run: sleep 30
 
-            - name: Read file
-              run: cat elephant.txt
+  test-job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: sleep for 10 sec
+        run: sleep 10
 
-            - name: Checkout files
-              run: ls -lrta
+      - name: Test file exists
+        run: grep -i "elephant" elephant.txt
 
-              
+  
+  deploy-job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read the elephant file
+        run: cat elephant.txt
+
+      - name: Deploy 
+        run: echo "Deploying ..."
