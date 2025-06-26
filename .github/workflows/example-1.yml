@@ -14,8 +14,11 @@ jobs:
                    echo "My first gh actions job"
                    ls -lrta
                    cat README.md
+            
+            - name: Installing cowsay files
+              run: sudo apt get update && suso apt-get install -y cowsay
 
-            - name: Generate ASCII Art
+            - name: Generate tux Art
               run: cowsay -f tux "Run for your life, I am a penguin" >> penguin.txt
               
             
