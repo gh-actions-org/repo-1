@@ -16,7 +16,7 @@ jobs:
                    cat README.md
 
             - name: Generate ASCII Art
-              run: cowsay -f lion "Run for your life, I am a lion" >> lion.txt
+              run: cowsay -f tux "Run for your life, I am a penguin" >> penguin.txt
               
             
             # - name: List the files in this repo
