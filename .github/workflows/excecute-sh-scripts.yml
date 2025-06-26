@@ -1,6 +1,6 @@
 name: excecuting shell scripts
 
-on: push
+on: workflow_dispatch
 
 jobs: 
     ascii-job:
