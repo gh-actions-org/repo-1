@@ -15,18 +15,18 @@ jobs:
       - name: Upload elephant.txt artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dragon-file
-          path:  dragon.txt
+          name: elephant-file
+          path:  elephant.txt
 
 
   test-job2:
     needs: build-job1
     runs-on: ubuntu-latest
     steps:
-      - name: Download dragon file
+      - name: Download elephant file
         uses: actions/download-artifact@v4
         with:
-          name: dragon-file
+          name: elephant-file
 
       - name: Test file exists
         run: grep -i "elephant" elephant.txt
@@ -39,7 +39,7 @@ jobs:
       - name: download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dragon-file
+          name: elephant-file
           
       - name: Read the elephant file
         run: cat elephant.txt
