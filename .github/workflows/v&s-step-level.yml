@@ -16,7 +16,7 @@ jobs:
               env: 
                 DOCKER_USERNAME: samarth2002
                 DOCKER_PASSWORD: Samarthdocker
-              run: echo docker login --username=$DOCKER_USERNAME --password=DOCKER_PASSWORD
+              run: echo docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
 
             
             - name: Docker publish
