@@ -16,6 +16,7 @@ jobs:
         run: sleep 30
 
   test-job2:
+    needs: build-job1
     runs-on: ubuntu-latest
     steps:
       - name: sleep for 10 sec
@@ -27,6 +28,7 @@ jobs:
   
   deploy-job3:
     runs-on: ubuntu-latest
+    needs: test-job2
     steps:
       - name: Read the elephant file
         run: cat elephant.txt
