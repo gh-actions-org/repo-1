@@ -37,4 +37,4 @@ jobs:
                 REGISTRY: docker.io
                 DOCKER_USERNAME: samarth2002
                 IMAGE_NAME: github-actions-nginx
-              run: echo docker run -t -p 8080:80 docker.io/samarth2002/imageName:latest
+              run: echo docker run -t -p 8080:80 $REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
