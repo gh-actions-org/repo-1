@@ -1,5 +1,5 @@
 name: v&s-job level
-on: push
+on: workflow_dispatch
 jobs: 
     docker:
         env:
