@@ -1,0 +1,27 @@
+name: vars & secrets
+
+on: push
+
+jobs: 
+    docker:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Docker buid
+              run: docker build -t docker.io/samarth2002/imageName:latest
+
+            - name: Docker login
+              run: docker login --username=samarth2002 --password=Samarthdocker
+
+            - name: Docker publish
+              run: docker push docker.io/samarth2002/imageName:latest
+
+    deploy: 
+        needs: docker
+        runs-on: ubuntu-latest
+        steps:
+            - name: Docker run
+              run: docker run -t -p 8080:80 docker.io/samarth2002/imageName:latest
+
+
+
+
