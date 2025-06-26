@@ -1,0 +1,21 @@
+name: Simple App
+
+on: workflow_dispatch
+
+jobs:
+    unit-testing:
+        name: unit testing
+        strategy:
+            matrix:
+                os: [ubuntu-latest, macos-latest, windows-latest]
+                cmd: [test]
+        runs-on: ${{ matrix.os }}
+        steps:
+            - name: Repo checkout 
+              uses: actions/checkout@v4
+              
+            - name: Install NodeJS - ${{ matrix.os }}
+              run: echo Installing NodeJS
+              
+            - name: Run Tests
+              run: echo npm ${{ matrix.cmd }}
