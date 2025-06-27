@@ -8,11 +8,13 @@ jobs:
             fail-fast: false
             max-parallel: 2
             matrix:
-                os: [ windows-latest, ubuntu-latest, ubuntu-20.04 ]
+                os: [ windows-latest, ubuntu-latest ]
                 images: [hello-world, alpine]
                 exclude:
-                  - images: alpine, hello-world
-                    os: windows-latest, ubuntu-20.04
+                  - images: alpine
+                    os: windows-latest
+                  - images: hello-world
+                    os: ubuntu-latest
                 include:
                   - images: amd64/alpine
                     os: ubuntu-latest
