@@ -5,7 +5,7 @@ on:
     push: 
         branches: 
             - main
-            - '!testing/*'   # igone pushing to any branch name starting with testing
+            - '!testing*'   # igone pushing to any branch name starting with testing
         # branches-ignore: 
         #     - test/*    # smthg like testing/adding-icon
         #     - feature/*    # like feature/remove some blocks
