@@ -1,0 +1,28 @@
+name: Workflow Filters & Activities
+
+on: 
+    workflow_dispatch: 
+    push: 
+        branches: 
+            - main
+            - '!testing/*'   # igone pushing to any branch name starting with testing
+        # branches-ignore: 
+        #     - test/*    # smthg like testing/adding-icon
+        #     - feature/*    # like feature/remove some blocks
+    pull_request: 
+        types: 
+            - opened   # triggers this wf when a PR is opened 
+            - closed   # triggers this wf when a PR is cosed 
+        paths-ignore: 
+            - README.md    # wf triggers if commit(changes) are made to files other than this path
+        branches: 
+            - main         # wf triggers only when PR's target branch is this
+
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Greet user & print event name that triggered wf
+              run: |
+                echo "Hello user..!"
+                echo This wf/j/s is executed for event type - ${{ github.event_name }}
