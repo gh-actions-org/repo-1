@@ -1,5 +1,7 @@
 name: v&s-wf level
-on: workflow_dispatch
+on: 
+  #workflow_dispatch
+  push:
 env:
     REGISTRY: docker.io
     DOCKER_USERNAME: samarth2002
@@ -25,6 +27,7 @@ jobs:
             
     deploy: 
         needs: docker
+        if: github.ref == 'refs/heads/main'
         concurrency: 
           group: prod-deploy
           cancel-in-progress: false
