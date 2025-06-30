@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Call reusable workflow
-        uses: ./.github/workflows/reusable-workflow.yml
+        uses: ./.SamarthMohanKumar/repo-1/.github/workflows/reusable-workflow.yml@testing-1
