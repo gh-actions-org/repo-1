@@ -1,26 +1,14 @@
-# name: Reusable workflow
+name: Reusable Hello Workflow
 
-# on: workflow_call
+on:
+  workflow_call:   # This makes it reusable by other workflows
 
-# jobs:
-#   Test-job1:
-#     name: test job1
-#     runs-on: ubuntu-latest
-#     steps:
-      # - name: Checkout Repository
-      #   uses: actions/checkout@v4
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-      # - name: Welcome Message
-      #   run: |
-      #     echo "My first gh actions job"
-      #     ls -lrta
-      #     cat README.md
-
-      # - name: Generate ASCII Art
-      #   run: cowsay -f dragon "Run for life, I am a dragon.....:@" >> dragon.txt
-          
-      # - name: List the files in this repo
-      #   run: ls -lrt
-      
-      # - name: Read file
-      #   run: cat README.md
+      - name: Print Hello Message
+        run: echo "Hello from the reusable workflow!"

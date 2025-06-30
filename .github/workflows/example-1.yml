@@ -2,35 +2,9 @@ name: My first workflow
 
 on:
   workflow_dispatch: 
-  push: 
-    branches: testing-1
+  # push: 
+  #   branches: testing-1
 
 jobs:
   first_job:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Welcome Message
-        run: |
-          echo "My first gh actions job"
-          ls -lrta
-          cat README.md
-
-      - name: Install cowsay
-        run: sudo apt-get update && sudo apt-get install -y cowsay
-
-      - name: Generate ASCII Art
-        run: cowsay -f dragon "Run for life, I am a dragon.....:@" >> dragon.txt
-          
-      - name: List the files in this repo
-        run: ls -lrt
-      
-      - name: Read file
-        run: cat README.md
-      
-      - name: Read the cowsay file
-        run: |
-          grep -i "dragon" dragon.txt
-          cat dragon.txt
+      uses: ./.github/workflows/reusable-workflow.yml
