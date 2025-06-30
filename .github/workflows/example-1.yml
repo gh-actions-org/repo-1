@@ -29,3 +29,8 @@ jobs:
       
       - name: Read file
         run: cat README.md
+      
+      - name: Read the cowsay file
+        run: |
+          grep -i "dragon" dragon.txt
+          cat dragon.txt
