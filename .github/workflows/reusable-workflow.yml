@@ -8,9 +8,6 @@ jobs:
         name: test job1
         runs-on: ubuntu-latest
         steps:
-            - name: Chekout repo 
-              uses: actions/checkout@v4
-
             - name: Welcome Message
               run: |
                    echo "My first gh actions job"
