@@ -8,6 +8,9 @@ jobs:
         name: test job1
         runs-on: ubuntu-latest
         steps:
+            - name: Chekout repo 
+              uses: actions/checkout@v4
+
             - name: Welcome Message
               run: |
                    echo "My first gh actions job"
@@ -17,7 +20,6 @@ jobs:
             - name: Generate ASCII Art
               run: cowsay -f dragon "Run for life, I am a dragon.....:@" >> dragon.txt
               
-            
             - name: List the files in this repo
               run: ls -lrt
             
