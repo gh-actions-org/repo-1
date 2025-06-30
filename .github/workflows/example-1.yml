@@ -1,10 +1,9 @@
 name: My first workflow
 
-on: workflow_dispatch
-#schedule:
-#- cron: "*/1 * * * *"
-    push:
-      testing-1
+on:
+  workflow_dispatch: 
+  push: 
+    branches: testing-1
 
 jobs:
     first_job:
