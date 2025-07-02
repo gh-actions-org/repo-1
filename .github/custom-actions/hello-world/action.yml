@@ -1,0 +1,22 @@
+name: 'Installing cowsay'
+description: 'composite action to test cowsauy program'
+
+# inputs:
+#   who-to-greet: # id of input
+#     description: 'Whom to greet'
+#     required: true
+#     default: 'World'
+
+# outputs: 
+#   random-number:
+#   description: "Any random number"
+#   value: ${{ steps.ran-num-gen.outputs.random-number }}
+
+runs:
+  using: "composite"
+  steps: 
+    - name: Install cowsay
+      run: sudo apt-get update && sudo apt-get install cowsay -y
+
+    - name: Generate ASCII Art
+      run: cowsay -f dragon "Run for life, I am a dragon.....:@" >> dragon.txt
