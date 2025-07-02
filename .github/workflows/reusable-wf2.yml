@@ -1,0 +1,14 @@
+name: Reusable workflow
+
+on: 
+    workflow_call:
+        secrets:
+            secret1:
+                required: true
+
+jobs: 
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Get the docker password
+              run: echo ${{ secrets.secret1 }}

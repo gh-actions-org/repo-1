@@ -1,0 +1,11 @@
+name: Testing the reusable wf
+
+on: workflow_dispatch
+
+jobs:
+    job-1:
+        uses: gh-actions-org/repo-1/.github/workflows/reusable-wf2.yml@main
+        secrets:
+            secret1: ${{ secrets.DOCKER_PASSWORD }}
+              
+            
