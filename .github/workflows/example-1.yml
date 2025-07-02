@@ -18,11 +18,8 @@ jobs:
                    ls -lrta
                    cat README.md
              
-            - name: Install cowsay
-              run: sudo apt-get update && sudo apt-get install cowsay -y
-
-            - name: Generate ASCII Art
-              run: cowsay -f dragon "Run for life, I am a dragon.....:@" >> dragon.txt
+            - name: Calling comp action to test cowsay prog
+              uses: ./.github/custom-actions/hello-world
               
             
             # - name: List the files in this repo
