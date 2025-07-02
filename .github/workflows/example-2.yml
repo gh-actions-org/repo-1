@@ -1,0 +1,22 @@
+name: workflow for i/p in comp action
+
+on: workflow_dispatch
+
+jobs:
+    greet-user:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: List repo details & greet owner
+              uses: 
+            - name: Listing the repo files
+             run: ls -lrta
+
+            - name: Greet repo owner
+              run: echo "Hi ${{ github.repository_owner }}"
+
+            - name: Thank you message
+              run: echo "Thank you for your contribution"
+

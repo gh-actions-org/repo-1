@@ -1,0 +1,20 @@
+name: Repo info & owner greet
+description: Getting repo details & greeting repo owner
+inputs:
+  owner-name: #id of input
+    description: name of the repo owner
+    required: true
+runs:
+  using: "composite"
+  steps: 
+    - name: Listing the repo files
+      run: ls -lrta
+      shell: bash
+
+    - name: Greet repo owner
+      run: echo "Hi ${{ inputs.owner-name }}"
+      shell: bash
+
+    - name: Thank you message
+      run: echo "Thank you for your contribution"
+      shell: bash
