@@ -9,14 +9,7 @@ jobs:
             - name: Checkout repo
               uses: actions/checkout@v4
 
-            - name: List repo details & greet owner
-              uses: 
-            - name: Listing the repo files
-             run: ls -lrta
-
-            - name: Greet repo owner
-              run: echo "Hi ${{ github.repository_owner }}"
-
-            - name: Thank you message
-              run: echo "Thank you for your contribution"
-
+            - name: call to comp action
+              uses: ./.github/custom-actions/comp-act-2
+              with: 
+                owner-name: ${{ github.repository_owner }}
