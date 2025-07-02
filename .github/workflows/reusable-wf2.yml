@@ -2,6 +2,10 @@ name: Reusable workflow
 
 on: 
     workflow_call:
+        inputs:
+            input-1:
+                required: true
+                type: string
         secrets:
             secret1:
                 required: true
@@ -12,3 +16,6 @@ jobs:
         steps:
             - name: Get the docker password
               run: echo ${{ secrets.secret1 }}
+
+            - name: Get the environemt variable 
+              run: echo "Docker username is ${{ inputs.input-1 }}"
