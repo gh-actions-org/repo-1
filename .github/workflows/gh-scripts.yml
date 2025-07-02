@@ -2,9 +2,9 @@ name: GitHub Scripts
 
 on: 
     workflow_dispatch: 
-    push:
-        branches: 
-            - main
+    # push:
+    #     branches: 
+    #         - main
 
 jobs:
     job-1:  

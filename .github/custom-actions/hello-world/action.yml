@@ -27,4 +27,5 @@ runs:
       run: | 
         grep -i "dragon" dragon.txt
         cat dragon.txt
+      shell: bash
 
