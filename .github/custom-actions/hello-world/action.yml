@@ -22,3 +22,9 @@ runs:
     - name: Generate ASCII Art
       run: cowsay -f dragon "Run for life, I am a dragon.....:@" >> dragon.txt
       shell: bash
+
+    - name: Test dragon file
+      run: | 
+        grep -i "dragon" dragon.txt
+        cat dragon.txt
+
