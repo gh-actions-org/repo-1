@@ -7,7 +7,6 @@ on:
 jobs:
   create_issue:
     runs-on: ubuntu-latest
-
     steps:
       - name: Create Welcome Issue
         env:
@@ -16,10 +15,9 @@ jobs:
           username="${{ github.event.client_payload.username }}"
           repo="${{ github.repository }}"
 
+          json_payload=$(printf '{"title": "Welcome %s!", "body": "Hi @%s,\n\nWelcome to Samarth'\''s organization!"}' "$username" "$username")
+
           curl -X POST -H "Authorization: token $GH_TOKEN" \
           -H "Accept: application/vnd.github+json" \
           https://api.github.com/repos/$repo/issues \
-          -d '{
-            "title": "Welcome '"$username"'!",
-            "body": "Hi @'"$username"',\n\nWelcome to Samarth's organization!"
-          }'
+          -d "$json_payload"
