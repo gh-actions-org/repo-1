@@ -7,19 +7,37 @@ on:
 jobs:
   create_issue:
     runs-on: ubuntu-latest
+
     steps:
       - name: Create Welcome Issue
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
+          set -e  # Exit on error
+
           username="${{ github.event.client_payload.username }}"
           repo="${{ github.repository }}"
 
+          echo "==> Creating welcome issue for user: $username"
+          echo "==> Target repo: $repo"
+
           json_payload=$(printf '{"title": "Welcome %s!", "body": "Hi @%s,\n\nWelcome to Samarth'\''s organization!"}' "$username" "$username")
 
-          curl -X POST -H "Authorization: token $GH_TOKEN" \
-          -H "Accept: application/vnd.github+json" \
-          https://api.github.com/repos/$repo/issues \
-          -d "$json_payload"
+          echo "==> JSON payload to be sent:"
+          echo "$json_payload"
 
-          
+          response=$(curl -s -o response_body.txt -w "%{http_code}" -X POST -H "Authorization: token $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/$repo/issues \
+            -d "$json_payload")
+
+          echo "==> API response body:"
+          cat response_body.txt
+          echo "==> HTTP Status: $response"
+
+          if [ "$response" -ne 201 ]; then
+            echo "Failed to create issue. Check the token and payload."
+            exit 1
+          else
+            echo "Issue created successfully!"
+          fi
