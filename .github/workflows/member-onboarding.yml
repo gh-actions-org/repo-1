@@ -1,0 +1,25 @@
+name: Member Onboarding
+
+on:
+  repository_dispatch:
+    types: [member_added]
+
+jobs:
+  create_issue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Welcome Issue
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          username="${{ github.event.client_payload.username }}"
+          repo="${{ github.repository }}"
+
+          curl -X POST -H "Authorization: token $GH_TOKEN" \
+          -H "Accept: application/vnd.github+json" \
+          https://api.github.com/repos/$repo/issues \
+          -d '{
+            "title": "Welcome '"$username"'!",
+            "body": "Hi @'"$username"',\n\nWelcome to Samarth's organization!"
+          }'
