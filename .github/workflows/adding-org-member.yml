@@ -11,10 +11,10 @@ jobs:
     steps:
       - name: Create Welcome Issue
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           username="${{ github.event.client_payload.username }}"
-          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+          curl -X POST -H "Authorization: token $GH_TOKEN" \
           -H "Accept: application/vnd.github+json" \
           https://api.github.com/repos/${{ github.repository }}/issues \
           -d "{\"title\": \"Welcome $username!\", \"body\": \"Hi @$username,\n\nWelcome to Samarth's organization!\"}"
