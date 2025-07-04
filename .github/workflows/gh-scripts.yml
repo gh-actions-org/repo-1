@@ -13,4 +13,6 @@ jobs:
             - name: View context attributes
               uses: actions/github-script@v7
               with:
-                script: console.log(context)
+                script: |
+                        console.log(`The repository owner and repository name is  ${context.repo.owner}`)
+                        console.log(`The repository you are working on is: ${context.repo.name}`)
