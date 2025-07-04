@@ -1,0 +1,21 @@
+name: Check PR Title
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  check-title:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        with:
+          script: |
+            const title = process.env.TITLE;
+            if (title.startsWith('octocat')) {
+              console.log("PR title starts with 'octocat'");
+            } else {
+              throw new Error("PR title did not start with 'octocat'");
+            }
