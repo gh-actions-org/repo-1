@@ -2,8 +2,8 @@ name: Calling Workflow Example
 
 on:
   workflow_dispatch:  
-  push: 
-    branches: testing-1
+  # push: 
+  #   branches: testing-1
 
 jobs:
   call-reusable:
