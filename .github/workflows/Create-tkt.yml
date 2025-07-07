@@ -1,30 +1,41 @@
-name: Automated ticket creation
+name: Save testing-2 branch commits to CSV
 
-on: 
+on:
   push:
-    branches: 
-      - 'testing-*'
+    branches:
+      - 'testing-2'
 
-jobs: 
-  first-job:
+jobs:
+  export-commits:
     runs-on: ubuntu-latest
     steps:
-      - name: repo checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Setup GH CLI with PAT
+      - name: Setup GitHub CLI with PAT
         run: |
           echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
-      - name: Fetch & print commits with message containing "edited"
-        run: gh search commits "edited" --json repository,sha,commit,author
-
-      - name: Saving the commits to csv
+      - name: Fetch and save commits from testing-2 branch to a CSV
         run: |
-          gh search commits "edited" --json repository,sha,commit,author \
-          --jq '.[] | [.repository.name, .sha, .commit.message, .commit.committedDate, .author.name] | @csv' > edited-commits.csv
-          cat edited-commits.csv
+          gh search commits "repo:$(gh repo view --json nameWithOwner --jq '.nameWithOwner') branch:testing-2" --json repository,sha,commit,author \
+          --jq '.[] | [.repository.name, .sha, .commit.message, .commit.committedDate, .author.name] | @csv' > edited-commit.csv
+
+          cat edited-commit.csv
+      
+      - name: Upload csv as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: commits-edited
+          path: commits-edited.csv
           
+
+
+
+
+
+
+
       # - name: Create an issue using GH CLI
       #   run: gh issue create -t "Automated Issue" -b "This is created via gh actions"
 
