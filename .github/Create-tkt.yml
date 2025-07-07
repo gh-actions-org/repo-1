@@ -1,0 +1,14 @@
+name: Automated ticket creation
+
+on: 
+  push:
+    branches: 
+      - 'testing-*'
+
+
+- name: Setup GH CLI with PAT
+  run: |
+    echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
+
+- name: Create an issue using GH CLI
+  run: gh issue create -t "Automated Issue" -b "This is created via gh actions"
