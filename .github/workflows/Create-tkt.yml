@@ -16,5 +16,8 @@ jobs:
         run: |
           echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
-      - name: Create an issue using GH CLI
-        run: gh issue create -t "Automated Issue" -b "This is created via gh actions"
+      - name: Fetching & printing commits with message "edited"
+        run: gh search commits "edited"
+
+      # - name: Create an issue using GH CLI
+      #   run: gh issue create -t "Automated Issue" -b "This is created via gh actions"
