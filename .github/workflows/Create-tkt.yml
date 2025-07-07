@@ -16,13 +16,19 @@ jobs:
         run: |
           echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
-      - name: Fetching & printing commits with message "edited"
-        run: gh search commits "edited"
+      - name: Fetch & print commits with message containing "edited"
+        run: gh search commits "edited" --json repository,name,oid,message,committedDate,author
 
       - name: Saving the commits to csv
         run: |
-          gh search commits "edited" > edited-commits.csv
+          gh search commits "edited" --json repository,name,oid,message,committedDate,author --jq '.[] | [.repository.name, .oid, .message, .committedDate, .author.name] | @csv' > edited_commits.csv
           cat edited-commits.csv
           
       # - name: Create an issue using GH CLI
       #   run: gh issue create -t "Automated Issue" -b "This is created via gh actions"
+
+#       - name: Print commits with message "edited"
+#   run: gh search commits "edited" --json repository,name,oid,message,committedDate,author
+
+# - name: Save commits to CSV
+#   run: gh search commits "edited" --json repository,name,oid,message,committedDate,author --jq '.[] | [.repository.name, .oid, .message, .committedDate, .author.name] | @csv' > edited_commits.csv
