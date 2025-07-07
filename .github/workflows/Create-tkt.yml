@@ -19,5 +19,10 @@ jobs:
       - name: Fetching & printing commits with message "edited"
         run: gh search commits "edited"
 
+      - name: Saving the commits to csv
+        run: |
+          gh search commits "edited" > edited-commits.csv
+          cat edited-commits.csv
+          
       # - name: Create an issue using GH CLI
       #   run: gh issue create -t "Automated Issue" -b "This is created via gh actions"
