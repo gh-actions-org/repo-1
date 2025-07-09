@@ -24,6 +24,7 @@ jobs:
 
     test-job:
         environment: TEST
+        needs: dev-job
         runs-on: ubuntu-latest
         steps: 
             - name: Repo checkout 
@@ -34,6 +35,7 @@ jobs:
 
     prod-job:
         environment: PROD
+        needs: test-job
         runs-on: self-hosted
         steps: 
             - name: Repo checkout
