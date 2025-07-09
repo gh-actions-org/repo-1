@@ -16,6 +16,12 @@ jobs:
             - name: Run a simple script
               run: echo "Job is running in dev env"
 
+            - name: Print Var,Sec in DEV env
+              run: |
+                echo "Varibale is ${{ vars.DEV_VAR1 }}"
+                echo "Secret is ${{ secrets.DEV_SEC1 }}"
+
+
     test-job:
         environment: TEST
         runs-on: ubuntu-latest
