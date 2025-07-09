@@ -1,0 +1,37 @@
+name: Env workflow
+
+on: workflow_dispatch
+
+jobs: 
+    dev-job:
+        environment: DEV
+        runs-on: ubuntu-latest
+        steps:
+            - name: Repo checkout
+              uses: actions/checkout@v4
+
+            - name: List the files in this repo
+              run: ls -lrta
+
+            - name: Run a simple script
+              run: echo "Job is running in dev env"
+
+    test-job:
+        environment: TEST
+        runs-on: ubuntu-latest
+        steps: 
+            - name: Repo checkout 
+              uses: actions/checkout@v4
+
+            - name: Simple script to confirm
+              run: echo "Job is running in test env"
+
+    prod-job:
+        environment: PROD
+        runs-on: self-hosted
+        steps: 
+            - name: Repo checkout
+              uses: actions/checkout@v4
+            
+            - name: Print msg to confirm
+              run: echo "Job is running in prod env"
