@@ -36,7 +36,7 @@ jobs:
     prod-job:
         environment: PROD
         needs: test-job
-        runs-on: self-hosted
+        runs-on: demo-vm
         steps: 
             - name: Repo checkout
               uses: actions/checkout@v4
